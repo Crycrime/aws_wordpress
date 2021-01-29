@@ -13,20 +13,14 @@ resource "aws_security_group" "wordpress_sg" {
   name        = "wordpress_sg"
   description = "allow http"
 
-  ingress {
-    description = "open 80 port"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "open 80 port"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+  dynamic "ingress" {
+    for_each = ["80", "22"]
+    content {
+      from_port   = ingress.value
+      to_port     = ingress.value
+      protocol    = "tcp"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
   }
 
   egress {
@@ -46,6 +40,7 @@ resource "aws_security_group" "wordpress_db_sg" {
   description = "allow 3306 port"
 
   ingress {
+    for_eche
     description = "open 3306 port"
     from_port   = 3306
     to_port     = 3306
