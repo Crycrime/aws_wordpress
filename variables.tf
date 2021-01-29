@@ -3,5 +3,5 @@ variable "db_username" {
 }
 
 variable "db_password" {
-  default = "qwerty"
+  default = "qwertyQWERTY"
 }
