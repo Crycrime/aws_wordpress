@@ -10,9 +10,7 @@ tar -xzf latest.tar.gz
 
 cd wordpress
 sudo touch wp-config.php
-sudo chmod 400 wp-config.php
-
-# my_ip=$(curl http://checkip.amazonaws.com)
+sudo chmod 644 wp-config.php
 
 
 cat >> wp-config.php <<'EOF'
